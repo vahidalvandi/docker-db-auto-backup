@@ -10,29 +10,13 @@ services:
       - ./backups:/var/backups
       - ./db-auto-backup.py:/usr/src/db-auto-backup/db-auto-backup.py:ro
     depends_on:
-      - psql
-      - mariadb
       - mysql
       - redis
-
-  psql:
-    image: postgres:alpine
-    restart: unless-stopped
-    environment:
-      - POSTGRES_PASSWORD=password
-
-  mariadb:
-    image: mariadb:latest
-    restart: unless-stopped
-    environment:
-      - MARIADB_ROOT_PASSWORD=password
-
   mysql:
     image: mysql:latest
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=password
-
   redis:
     image: redis:alpine
     restart: unless-stopped
